@@ -9,14 +9,14 @@ public class Runner {
 
     public void start(){
         int movesQuantity = moves.length;
-        if (movesQuantity % 2 == 0){
-            System.out.println("Moves quantity should be odd!");
+        Validator validator = new Validator();
+        if (!validator.isMovesValid(moves)){
+            System.out.println("Moves should be different, quantity should be odd and more that 1!");
             System.exit(0);
         }
         PrintService printService = new PrintService();
         MoveService moveService = new MoveService();
         ResultService resultService = new ResultService();
-        Validator validator = new Validator();
         while (true) {
             GameRound gameRound = new GameRound(moves);
             gameRound.setComputerMove(moveService.makeComputerMove(movesQuantity));
